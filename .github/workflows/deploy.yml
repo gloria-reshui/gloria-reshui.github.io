@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
+      NODE_OPTIONS: --max-old-space-size=4096
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,23 +28,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'npm'
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm ci
-        continue-on-error: false
+      - name: Clean install dependencies
+        run: |
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Build site
         run: npm run build
-        env:
-          NODE_ENV: production
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
