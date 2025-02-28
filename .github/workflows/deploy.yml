@@ -22,10 +22,10 @@ jobs:
       NODE_OPTIONS: --max-old-space-size=4096
     steps:
       - name: Checkout repository
-        uses: actions/checkout@main
+        uses: actions/checkout@v4.1.1
 
       - name: Setup Node.js
-        uses: actions/setup-node@main
+        uses: actions/setup-node@v4.0.2
         with:
           node-version: 18
           cache: 'npm'
@@ -40,15 +40,14 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
-        uses: actions/configure-pages@main
+        uses: actions/configure-pages@v4.0.0
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@main
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+          # 注意：v3版本不支持artifact-name和compression-level参数
           retention-days: 1
-          compression-level: 9
-          artifact-name: github-pages
 
   deploy:
     needs: build
@@ -59,4 +58,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@main
+        uses: actions/deploy-pages@v4.0.3
