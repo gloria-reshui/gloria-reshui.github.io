@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Astro globally
+        run: npm install -g astro
+
       - name: List installed packages
         run: npm list
         
