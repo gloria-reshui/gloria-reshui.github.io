@@ -14,6 +14,7 @@ import { easyConfig } from './src/utils/easyConfig';
 
 // https://astro.build/config
 export default defineConfig({
+	base: '/',
 	vite: {
 		resolve: {
 			preserveSymlinks: true, // Allows symlinking of public/personal-blog/posts to src/content/blog
