@@ -35,13 +35,15 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          BASE_PATH: /
         run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
