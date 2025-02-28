@@ -14,7 +14,6 @@ import { easyConfig } from './src/utils/easyConfig';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://gloria-reshui.github.io',
 	base: '/',
 	vite: {
 		resolve: {
