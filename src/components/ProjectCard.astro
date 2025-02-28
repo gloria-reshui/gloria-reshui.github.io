@@ -1,0 +1,56 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    techStack: string[];
+    githubUrl: string;
+    demoUrl?: string;
+    progress?: number;
+    detailUrl?: string;
+}
+
+const { title, description, techStack, demoUrl, progress = 0, detailUrl } = Astro.props;
+---
+
+<a href={detailUrl} class="block">
+<div class="project-card group relative overflow-hidden rounded-xl border border-semantic-on-surface-variant/10 bg-semantic-surface-variant/5 p-6 transition-all duration-300 hover:scale-[1.02] hover:border-semantic-on-surface-variant/20 hover:bg-semantic-surface-variant/10">
+    <div class="flex flex-col gap-4">
+        <h3 class="text-xl font-bold text-semantic-on-surface-variant group-hover:text-semantic-primary">{title}</h3>
+        <p class="text-semantic-on-surface-variant/90">{description}</p>
+        <div class="w-full bg-semantic-surface-variant/20 rounded-full h-2">
+            <div class="progress-bar h-2 rounded-full transition-all duration-300" style={`width: ${progress}%`}></div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+            {techStack.map((tech) => (
+                <span class="rounded-full bg-semantic-surface-variant/10 px-3 py-1 text-sm text-semantic-on-surface-variant/80">
+                    {tech}
+                </span>
+            ))}
+        </div>
+        <div class="flex gap-4">
+            {demoUrl && (
+                <a
+                    href={demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-2 text-semantic-on-surface-variant/90 hover:text-semantic-primary"
+                >
+                    <span class="i-material-symbols-open-in-new text-xl"></span>
+                    <span>Demo</span>
+                </a>
+            )}
+        </div>
+    </div>
+</div>
+</a>
+
+<style>
+    .progress-bar {
+        background: linear-gradient(90deg, 
+            rgba(156, 39, 176, 0.3),
+            rgba(103, 58, 183, 0.3),
+            rgba(33, 150, 243, 0.3),
+            rgba(0, 150, 136, 0.3),
+            rgba(139, 195, 74, 0.3));
+    }
+</style>

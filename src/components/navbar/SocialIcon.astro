@@ -17,6 +17,22 @@ switch (socialPlatform) {
 		iconName = 'discord-server';
 		title = `Join our Discord server`;
 		break;
+	case 'redbook':
+		iconName = 'mdi:square';
+		title = `Follow me on Xiaohongshu`;
+		break;
+	case 'thread':
+		iconName = 'mdi:at';
+		title = `Follow me on Threads`;
+		break;
+	case 'patreon':
+		iconName = 'mdi:patreon';
+		title = `Support me on Patreon`;
+		break;
+	case 'bilibili':
+		iconName = 'mdi:circle';
+		title = `Follow me on Bilibili`;
+		break;
 	default:
 		iconName = `mdi:${socialPlatform}`;
 }
@@ -25,3 +41,28 @@ switch (socialPlatform) {
 <a href={data.url} title={title}>
 	<Icon name={iconName} />
 </a>
+
+<style>
+[data-icon="mdi:square"] {
+	color: #FE2C55;
+}
+
+[data-icon="mdi:circle"] {
+	color: #00A1D6;
+}
+
+[data-icon="mdi:patreon"] {
+	color: #000000;
+}
+
+[data-icon="mdi:github"] {
+	color: #000000;
+}
+
+[data-icon="mdi:youtube"] {
+	color: #FF0000;
+}
+[data-icon="mdi:discord"] {
+	color: #5865F2;
+}
+</style>

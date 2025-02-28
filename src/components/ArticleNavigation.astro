@@ -1,0 +1,66 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+    prevPost?: { url: string; title: string };
+    nextPost?: { url: string; title: string };
+}
+
+const { prevPost, nextPost } = Astro.props;
+---
+
+<div class="fixed bottom-4 right-4 flex flex-col gap-4 md:bottom-8 md:right-8">
+    <!-- 回到顶部按钮 -->
+    <button
+        id="back-to-top"
+        class="rounded-full bg-semantic-surface-variant/80 p-3 text-semantic-on-surface-variant opacity-0 transition-all hover:bg-semantic-surface-variant hover:text-semantic-on-surface-variant/90"
+        aria-label="回到顶部"
+    >
+        <Icon name="material-symbols:keyboard-arrow-up-rounded" class="h-6 w-6" />
+    </button>
+
+    <!-- 文章导航按钮 -->
+    <div class="flex flex-row gap-4">
+        {prevPost && (
+            <a
+                href={prevPost.url}
+                class="flex items-center gap-2 rounded-full bg-semantic-surface-variant/80 p-3 text-semantic-on-surface-variant transition-all hover:bg-semantic-surface-variant hover:text-semantic-on-surface-variant/90"
+                title={`上一篇: ${prevPost.title}`}
+            >
+                <Icon name="material-symbols:chevron-left-rounded" class="h-6 w-6" />
+            </a>
+        )}
+        {nextPost && (
+            <a
+                href={nextPost.url}
+                class="flex items-center gap-2 rounded-full bg-semantic-surface-variant/80 p-3 text-semantic-on-surface-variant transition-all hover:bg-semantic-surface-variant hover:text-semantic-on-surface-variant/90"
+                title={`下一篇: ${nextPost.title}`}
+            >
+                <Icon name="material-symbols:chevron-right-rounded" class="h-6 w-6" />
+            </a>
+        )}
+    </div>
+</div>
+
+<script>
+    const backToTopButton = document.getElementById('back-to-top');
+
+    if (backToTopButton) {
+        // 监听滚动事件
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0');
+            } else {
+                backToTopButton.classList.add('opacity-0');
+            }
+        });
+
+        // 点击回到顶部
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+</script>

@@ -9,6 +9,12 @@ import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 import tailwind from '@astrojs/tailwind';
 
+// repo Config 
+import { defineConfig } from 'astro/config';
+
+export default defineConfig({
+  site: 'https://gloria-reshui.github.io',
+  
 // Site Config
 import { easyConfig } from '/src/utils/easyConfig';
 

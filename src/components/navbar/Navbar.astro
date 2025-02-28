@@ -5,18 +5,24 @@ import { easyConfig } from '@utils/easyConfig';
 import Footer from '@components/Footer.astro';
 import SocialLinks from '@components/navbar/SocialLinks.astro';
 import ShareIcon from '@components/navbar/ShareIcon.astro';
+import PaymentWidget from '@components/navbar/PaymentWidget.astro';
 ---
 
 <nav id="navbar-desktop" class="background-gradient hidden text-semantic-on-surface-variant md:block">
 	<div id="navbar-fun-line"></div>
 	<Icon id="nav-arrow" class="block text-neutral-variant-600" name="material-symbols:keyboard-double-arrow-left-rounded" />
 	<ul class="grid h-full w-full grid-rows-[repeat(20,_minmax(0,_1fr))] items-center justify-around">
-		<li class="nav-item row-start-2 row-end-4">
-			<HeaderLink class="link-header" href="/blog">Blog</HeaderLink>
+		<li class="nav-item row-start-2 row-end-5">
+			<HeaderLink class="link-header" href="/blog">📝 blog</HeaderLink>
 			<span class="text-sub hidden italic">{easyConfig.siteDescription}</span>
 		</li>
-		<li class="nav-item row-start-5 row-end-6">
-			<HeaderLink class="link-header" href="/">About</HeaderLink>
+		<li class="nav-item row-start-5 row-end-7">
+			<HeaderLink class="link-header" href="/projects">🛠️ projects</HeaderLink>
+			<span class="text-sub hidden italic">给你看看我在瞎闹什么</span>
+		</li>
+		<li class="nav-item row-start-7 row-end-11">
+			<HeaderLink class="link-header" href="/">👋 welcome</HeaderLink>
+			<span class="text-sub hidden italic">An independent philosopher or somebody who don't like shit. Sometimes I make tools for girls to have fun.無駄に生きることを誇りに思っている</span>
 		</li>
 		{
 			easyConfig.easyAbcEnabled && (
@@ -47,8 +53,11 @@ import ShareIcon from '@components/navbar/ShareIcon.astro';
 				</li>
 			)
 		}
-		<li class="nav-item row-start-[12] row-end-[18]">
+		<li class="nav-item row-start-[12] row-end-[15]">
 			<SocialLinks />
+		</li>
+		<li class="nav-item row-start-[15] row-end-[18]">
+			<PaymentWidget />
 		</li>
 		<li class="nav-item text-sub row-start-[18] row-end-[21] block">
 			<Footer />
@@ -185,6 +194,7 @@ import ShareIcon from '@components/navbar/ShareIcon.astro';
 			width: 5vw;
 			justify-content: space-evenly;
 			height: 100%;
+			margin: 1rem 0;
 		}
 		#navbar-desktop:hover .nav-item {
 			width: 16vw;

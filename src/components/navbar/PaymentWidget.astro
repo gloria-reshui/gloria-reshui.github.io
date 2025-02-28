@@ -1,0 +1,73 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const qrCodeStyle = "w-full max-w-[180px] rounded-xl object-cover transition-all duration-300 hover:scale-105 shadow-gradient";
+---
+
+<div id="payment-widget" class="dropdown grid h-full w-full sm:hidden">
+	<div id="payment-qr" tabindex="0" class="collapse row-start-1 row-end-2 flex flex-col items-center gap-4 opacity-0">
+		<div class="flex flex-col items-center gap-2">
+			<a href="/imgs/wechat-pay.png" target="_blank" rel="noopener noreferrer" class="block">
+				<img src="/imgs/wechat-pay.png" alt="" class={qrCodeStyle} />
+			</a>
+		</div>
+		<div class="flex flex-col items-center gap-2">
+			<a href="/imgs/paypal-pay.png" target="_blank" rel="noopener noreferrer" class="block">
+				<img src="/imgs/paypal-pay.png" alt="" class={qrCodeStyle} />
+			</a>
+		</div>
+	</div>
+	<div class="row-start-2 row-end-3 flex flex-col items-center justify-start">
+		<hr class="collapse mt-2 w-full border-semantic-on-surface-variant/10 opacity-0" />
+		<Icon
+			id="payment-icon"
+			role="button"
+			class="opacity-90 hover:opacity-100 transition-opacity duration-300 text-semantic-on-surface-variant"
+			name="material-symbols:payments-outline"
+			tabindex="0"
+		/>
+	</div>
+</div>
+
+<style>
+	@media (min-width: 768px) {
+		@media (min-width: 1281px) {
+			#payment-icon {
+				width: 4vb;
+				height: 4vb;
+			}
+		}
+		@media (max-width: 1280px) {
+			#payment-icon {
+				width: 2.5vb;
+				height: 2.5vb;
+			}
+		}
+	}
+
+	#payment-widget {
+		position: relative;
+	}
+
+	#payment-widget:hover #payment-qr,
+	#payment-widget:focus-within #payment-qr,
+	#payment-widget:hover span,
+	#payment-widget:focus-within span,
+	#payment-widget:hover hr,
+	#payment-widget:focus-within hr {
+		opacity: 1;
+	}
+
+	#payment-qr {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		background: theme(colors.semantic.background);
+		padding: 1rem;
+		border-radius: 0.5rem;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		transition: opacity 0.3s ease;
+		z-index: 50;
+	}
+</style>

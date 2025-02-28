@@ -78,6 +78,22 @@ export const easyConfig = {
 		discordServer: easyAbcUserConfig.socialMedia.discordServerInvite && {
 			url: `https://discord.gg/${ensureNoAtSymbol(easyAbcUserConfig.socialMedia.discordServerInvite)}`,
 		},
+		redbook: easyAbcUserConfig.socialMedia.redbookUsername && {
+			username: easyAbcUserConfig.socialMedia.redbookUsername,
+			url: `https://www.xiaohongshu.com/user/profile/${ensureNoAtSymbol(easyAbcUserConfig.socialMedia.redbookUsername)}`,
+		},
+		thread: easyAbcUserConfig.socialMedia.threadUsername && {
+			username: ensureAtSymbol(easyAbcUserConfig.socialMedia.threadUsername),
+			url: `https://www.threads.net/@${ensureNoAtSymbol(easyAbcUserConfig.socialMedia.threadUsername)}`,
+		},
+		patreon: easyAbcUserConfig.socialMedia.patreonUsername && {
+			username: easyAbcUserConfig.socialMedia.patreonUsername,
+			url: `https://www.patreon.com/${ensureNoAtSymbol(easyAbcUserConfig.socialMedia.patreonUsername)}`,
+		},
+		bilibili: easyAbcUserConfig.socialMedia.bilibiliUsername && {
+			username: easyAbcUserConfig.socialMedia.bilibiliUsername,
+			url: `https://space.bilibili.com/${ensureNoAtSymbol(easyAbcUserConfig.socialMedia.bilibiliUsername)}`,
+		}
 	},
 	easyAbcEnabled: easyAbcUserConfig.easyAbcEnabled,
 };

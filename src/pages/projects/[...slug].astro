@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const projectEntries = await getCollection('projects');
+    return projectEntries.map((entry, index) => ({
+        params: { slug: entry.slug },
+        props: {
+            entry,
+            prev: index > 0 ? projectEntries[index - 1] : null,
+            next: index < projectEntries.length - 1 ? projectEntries[index + 1] : null
+        },
+    }));
+}
+
+const { entry, prev, next } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout
+    pageTitle={entry.data.title || '项目详情'}
+    pageDescription={entry.data.description || '项目详细信息'}
+>
+    <div class="relative">
+        <a href="/projects" class="fixed top-4 left-4 z-50 flex items-center gap-2 rounded-full bg-semantic-surface-variant/80 px-4 py-2 text-semantic-on-surface-variant backdrop-blur-sm hover:bg-semantic-surface-variant">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+            </svg>
+            返回项目列表
+        </a>
+    
+        <button id="backToTop" class="fixed bottom-4 right-4 z-50 hidden rounded-full bg-semantic-surface-variant/80 p-3 text-semantic-on-surface-variant backdrop-blur-sm hover:bg-semantic-surface-variant">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m18 15-6-6-6 6"/>
+            </svg>
+        </button>
+    
+        <div class="prose prose-slate dark:prose-invert max-w-none p-4 sm:p-6 md:p-8">
+            <Content />
+        </div>
+    
+        <div class="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 flex gap-4">
+            {prev && (
+                <a href={`/projects/${prev.slug}`} class="rounded-full bg-semantic-surface-variant/80 p-3 text-semantic-on-surface-variant backdrop-blur-sm hover:bg-semantic-surface-variant" title={prev.data.title || '上一个项目'}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </a>
+            )}
+            {next && (
+                <a href={`/projects/${next.slug}`} class="rounded-full bg-semantic-surface-variant/80 p-3 text-semantic-on-surface-variant backdrop-blur-sm hover:bg-semantic-surface-variant" title={next.data.title || '下一个项目'}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+            )}
+        </div>
+    </div>
+
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton?.classList.remove('hidden');
+            } else {
+                backToTopButton?.classList.add('hidden');
+            }
+        });
+        backToTopButton?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</BaseLayout>
