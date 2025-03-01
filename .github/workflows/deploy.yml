@@ -29,7 +29,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+<<<<<<< HEAD
+=======
+      - name: Install Astro globally
+        run: npm install -g astro
 
+>>>>>>> ab5531e66568ac8db88126d1cabc709d8773499e
       - name: List installed packages
         run: npm list
         
@@ -58,4 +63,8 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
+<<<<<<< HEAD
         uses: actions/deploy-pages@v4.0.3
+=======
+        uses: actions/deploy-pages@v4.0.3
+>>>>>>> ab5531e66568ac8db88126d1cabc709d8773499e

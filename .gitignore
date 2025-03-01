@@ -14,19 +14,3 @@ pnpm-debug.log*
 .env.production
 # macOS-specific files
 .DS_Store
-
-# IDE and editor files
-.vscode/*
-!.vscode/extensions.json
-!.vscode/launch.json
-!.vscode/settings.json
-!.vscode/tasks.json
-.idea/
-*.swp
-*.swo
-
-# History files
-.history/
-
-# System files
-Thumbs.db
