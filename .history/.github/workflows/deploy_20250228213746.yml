@@ -1,13 +1,18 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -18,36 +23,33 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4.0.2
         with:
           node-version: 18
           cache: 'npm'
           cache-dependency-path: package-lock.json
-          
+
       - name: Install dependencies
         run: npm ci
 
-      - name: List installed packages
-        run: npm list
-        
       - name: Build site
         env:
           BASE_PATH: /
-          NODE_ENV: production
-          ASTRO_TELEMETRY_DISABLED: 1
         run: npm run build
-        
+
       - name: Setup Pages
         uses: actions/configure-pages@v4.0.0
-        
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
           retention-days: 1
-          
+          compression-level: 9
+          artifact-name: github-pages
+
   deploy:
     needs: build
     runs-on: ubuntu-latest

@@ -1,13 +1,17 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -28,22 +32,20 @@ jobs:
           
       - name: Install dependencies
         run: npm ci
-
-      - name: List installed packages
-        run: npm list
+        
+      - name: Install global dependencies
+        run: npm install -g astro
         
       - name: Build site
         env:
           BASE_PATH: /
-          NODE_ENV: production
-          ASTRO_TELEMETRY_DISABLED: 1
         run: npm run build
         
       - name: Setup Pages
         uses: actions/configure-pages@v4.0.0
         
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           path: dist
           retention-days: 1
