@@ -21,7 +21,7 @@ export const easyConfig = {
 	},
 	faviconType: easyAbcUserConfig.faviconType,
 	githubUsername: easyAbcUserConfig.githubUsername,
-	githubPagesUrl: `https://${easyAbcUserConfig.githubUsername}.github.io`, // Right now this is the only supported format,
+	githubPagesUrl: easyAbcUserConfig.githubPagesUrl,
 	socialMedia: {
 		linkedin: easyAbcUserConfig.socialMedia.linkedinUsername && {
 			username: easyAbcUserConfig.socialMedia.linkedinUsername,

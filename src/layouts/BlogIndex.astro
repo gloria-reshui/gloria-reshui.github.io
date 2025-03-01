@@ -9,8 +9,8 @@ const { blogCollectionName, basePath } = Astro.props;
 const blogCollection = await customGetCollection(blogCollectionName, basePath);
 let posts = blogCollection.sort((a, b) => {
 	// Sort by modifiedDate if available, otherwise fall back to pubDate
-	const dateA = a.props.data.modifiedDate ? new Date(a.props.data.modifiedDate) : new Date(a.props.data.pubDate);
-	const dateB = b.props.data.modifiedDate ? new Date(b.props.data.modifiedDate) : new Date(b.props.data.pubDate);
+	const dateA = a.props.data.update ? new Date(a.props.data.update) : new Date(a.props.data.pubDate);
+	const dateB = b.props.data.update ? new Date(b.props.data.update) : new Date(b.props.data.pubDate);
 	// Sort in descending order (newest first)
 	return dateB.valueOf() - dateA.valueOf();
 });
@@ -38,7 +38,7 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 									<div class="text-xs font-medium text-semantic-on-background/60 ">
 										<FormattedDate
 											date={
-												post.props.data.modifiedDate ? new Date(post.props.data.modifiedDate) : new Date(post.props.data.pubDate)
+												post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)
 											}
 										/>
 									</div>
@@ -93,7 +93,7 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 									<div class="text-xs font-medium text-semantic-on-background/60">
 										<FormattedDate
 											date={
-												post.props.data.modifiedDate ? new Date(post.props.data.modifiedDate) : new Date(post.props.data.pubDate)
+												post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)
 											}
 										/>
 									</div>

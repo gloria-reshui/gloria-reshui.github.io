@@ -23,7 +23,7 @@ export async function customGetCollection(collectionName: ContentCollectionKey, 
 			throw new Error(`Collection ${collectionName} not supported.`);
 		}
 
-		post.data.modifiedDate = postModifiedDate(filePath, post.data.pubDate, post.data.modifiedDate);
+		post.data.update = postModifiedDate(filePath, post.data.pubDate, post.data.update);
 		post.data.readingTime = getReadingTime(post.body);
 
 		return {
