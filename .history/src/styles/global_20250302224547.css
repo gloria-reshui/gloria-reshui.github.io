@@ -1,0 +1,212 @@
+/* In this file the theme is applied. */
+
+@font-face {
+	font-family: 'LXGW WenKai Screen';
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: url('/fonts/LXGWWenKaiMonoGBScreen.ttf') format('truetype');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	min-width: 0;
+}
+
+@layer base {
+	html {
+		font-family: 'LXGW WenKai Screen', sans-serif;
+		font-size: 16px;
+		height: 100%;
+	}
+	body {
+		@apply bg-semantic-background;
+		@apply text-semantic-on-background;
+		transition:
+			background-color 222ms,
+			color 222ms;
+		height: 100%;
+		width: 100%;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+	}
+	main {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		min-height: 100%;
+		overflow-y: auto;
+		align-items: center;
+		flex-grow: 1;
+	}
+	article {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		padding-top: 2vh;
+		padding-bottom: 2vh;
+	}
+	@media (max-width: 767px) {
+		main {
+			padding-left: 3vw;
+			padding-right: 3vw;
+			padding-top: calc(4svh + env(safe-area-inset-top));
+			padding-bottom: calc(11svh + env(safe-area-inset-bottom));
+		}
+		article {
+			padding-left: 3vw;
+			padding-right: 3vw;
+		}
+		#article-text {
+			overflow-x: clip;
+			width: 100%;
+		}
+	}
+	@media (min-width: 768px) {
+		main {
+			padding-left: 2vw;
+			padding-right: 2vw;
+			padding-top: calc(4svh + env(safe-area-inset-top));
+			padding-bottom: calc(4svh + env(safe-area-inset-bottom));
+		}
+		article {
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#article-text {
+			width: clamp(45ch, 70ch, 70%);
+		}
+	}
+	@media (min-width: 1281px) {
+		#article-text {
+			width: clamp(45ch, 80ch, 67%);
+		}
+	}
+
+	/* Hyperlinks */
+	a {
+		letter-spacing: 0.023rem;
+	}
+	/* For unvisited links. TIL! */
+	article a:link {
+		@apply text-semantic-primary;
+	}
+	article a:visited {
+		@apply text-semantic-secondary;
+	}
+	article a:active {
+		@apply text-semantic-tertiary;
+		text-decoration: underline;
+	}
+	article a:hover,
+	article a:focus {
+		text-decoration: underline;
+	}
+	@media (scripting: none) {
+		@media (prefers-color-scheme: dark) {
+			:root {
+				@apply dark;
+			}
+		}
+	}
+
+	:root {
+		--linear-gradient-y: linear-gradient(
+			0deg,
+			theme(colors.primary.400) 0%,
+			theme(colors.secondary.400) 50%,
+			theme(colors.tertiary.400) 100%
+		);
+		--linear-gradient-x: linear-gradient(
+			90deg,
+			theme(colors.primary.400) 0%,
+			theme(colors.secondary.400) 50%,
+			theme(colors.tertiary.400) 100%
+		);
+	}
+	.background-gradient {
+		position: relative;
+	}
+	.background-gradient:before {
+		content: '';
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: var(--linear-gradient-y);
+		filter: blur(2px);
+		opacity: 0.55;
+		transition: opacity 0.3s;
+		border-radius: inherit;
+	}
+	.background-gradient::after {
+		content: '';
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		opacity: inherit;
+		background: inherit;
+		border-radius: inherit;
+	}
+	.shadow-gradient {
+		/* Required properties */
+		position: relative;
+		background: theme(colors.semantic.background);
+		z-index: -1;
+	}
+
+	.shadow-gradient:before {
+		content: '';
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: var(--linear-gradient-y);
+		transform: translate3d(0px, 5px, 0) scale(0.98);
+		filter: blur(20px);
+		opacity: 0.5;
+		transition: opacity 0.3s;
+		border-radius: inherit;
+	}
+	.shadow-gradient::after {
+		content: '';
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: inherit;
+		border-radius: inherit;
+	}
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+	clip: rect(1px 1px 1px 1px);
+	/* maybe deprecated but we need to support legacy browsers */
+	clip: rect(1px, 1px, 1px, 1px);
+	/* modern browsers, clip-path works inwards from each corner */
+	clip-path: inset(50%);
+	/* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+	white-space: nowrap;
+}
