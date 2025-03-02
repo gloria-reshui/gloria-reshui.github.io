@@ -64,7 +64,7 @@ export const projects: Project[] = [
         description:'客制化高端手账（摆摊项目）: writing for yourself',
         techStack:['data visualization','letters for yourself'],
         progress: 50,
-        detailUrl:['https://separated-mall-901.notion.site/Lovely-Journal-for-yourself-1aa184f627a980688154d6bdaf4dadc0?pvs=4']
+        detailUrl:'https://separated-mall-901.notion.site/Lovely-Journal-for-yourself-1aa184f627a980688154d6bdaf4dadc0?pvs=4'
     }
 
     // 在这里添加更多项目
