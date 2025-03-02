@@ -15,7 +15,7 @@ export const projects: Project[] = [
         techStack: ['知识管理', 'Obsidian', 'python'],
         githubUrl: 'https://github.com/gloria-reshui/screenshot_batch_OCR',
         progress: 100,
-        detailUrl: 'https://separated-mall-901.notion.site/screenshot_batch_OCR-1a7184f627a980ecb03bdab2317ee78a'
+        detailUrl: 'https://github.com/gloria-reshui/screenshot_batch_OCR'
     },
 
     {
