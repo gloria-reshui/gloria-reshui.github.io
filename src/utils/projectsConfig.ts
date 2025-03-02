@@ -27,11 +27,11 @@ export const projects: Project[] = [
     },
     
     {
-        title:'reading&gaming',
-        description:'由卡牌游戏和阅读游戏组成的女性向读书会设计',
+        title:'Reading&Gaming',
+        description:'正在预备卡牌设计和女性专题+碎片化阅读的新一期【意识重构】读书会',
         techStack:['girl', '知识管理'],
-        progress: 30,
-        detailUrl: 'https://separated-mall-901.notion.site/Reading-Gaming-1a7184f627a980f5b64af53e83328ce5?pvs=74'
+        progress: 80,
+        detailUrl: 'https://separated-mall-901.notion.site/Reading-Gaming-1a7184f627a980f5b64af53e83328ce5?pvs=4'
     },
     
     {
@@ -44,11 +44,11 @@ export const projects: Project[] = [
     },
 
     {
-        title:'philo-sci research',
-        description:'philo-sci科哲学术研究',
+        title:'PhilSci Research',
+        description:'科哲学术研究',
         techStack:['philosophy', 'science'],
         progress: 10,
-        detailUrl: 'https://separated-mall-901.notion.site/philo-sci-research-1aa184f627a98010bd92f18ad760b8cf?pvs=4'
+        detailUrl: 'https://separated-mall-901.notion.site/PhilSci-research-1aa184f627a98010bd92f18ad760b8cf?pvs=4'
     },
 
     {
