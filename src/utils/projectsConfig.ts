@@ -41,6 +41,31 @@ export const projects: Project[] = [
         progress: 0,
         detailUrl: 'https://separated-mall-901.notion.site/chat_within_MCP-1a7184f627a98065bfc6e44985447d98?pvs=73'
         
+    },
+
+    {
+        title:'philo-sci research',
+        description:'philo-sci科哲学术研究',
+        techStack:['philosophy', 'science'],
+        progress: 10,
+        detailUrl: 'https://separated-mall-901.notion.site/philo-sci-research-1aa184f627a98010bd92f18ad760b8cf?pvs=4'
+    },
+
+    {
+        title:'sth. about death',
+        description:'关于死亡的一些思考',
+        techStack:['philosophy','death'],
+        progress: 10,
+        detailUrl:'https://separated-mall-901.notion.site/Death-believer-fe2d3fa9ce2b47599adc370e36bfbb08?pvs=4'
+    },
+
+    {
+        title:'Lovely Journal for yourself',
+        description:'客制化高端手账（摆摊项目）: writing for yourself',
+        techStack:['data visualization','letters for yourself'],
+        progress: 50,
+        detailUrl:['https://separated-mall-901.notion.site/Lovely-Journal-for-yourself-1aa184f627a980688154d6bdaf4dadc0?pvs=4']
     }
+
     // 在这里添加更多项目
 ];
