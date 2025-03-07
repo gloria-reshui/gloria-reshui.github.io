@@ -18,8 +18,10 @@ const mode = Astro.props.mode;
 <!-- Mobile Screens -->
 {
 	mode === 'mobile' ? (
-		<div class="flex h-full w-full flex-col justify-center md:hidden lg:hidden" id="share-button-mobile">
-			<Icon id="share-button-mobile" class="self-center " name="material-symbols:ios-share-rounded" />
+		<div class="flex h-full w-full flex-col justify-center md:hidden lg:hidden" id="share-button-mobile-wrapper">
+			<button id="share-button-mobile" class="z-[1001] h-full w-full cursor-pointer">
+				<Icon class="self-center" name="material-symbols:ios-share-rounded" />
+			</button>
 		</div>
 	) : null
 }
@@ -42,6 +44,17 @@ const mode = Astro.props.mode;
 		scale: 0.88;
 		transition-duration: 100ms;
 		transition-delay: 50ms;
+	}
+	#share-button-mobile {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		touch-action: manipulation;
+	}
+	#share-button-mobile:active {
+		scale: 0.88;
+		transition-duration: 100ms;
 	}
 	@media (scripting: none) {
 		#share-button-desktop {

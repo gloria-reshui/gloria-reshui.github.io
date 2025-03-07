@@ -10,12 +10,15 @@ let posts = blogCollection.sort((a, b) => {
 	// Sort in descending order (newest first)
 	return dateB.valueOf() - dateA.valueOf();
 });
+// 限制只显示最新的6篇文章
+posts = posts.slice(0, 6);
 ---
 
 <div
 	class="flex w-full flex-col items-center rounded-xl border-4 border-semantic-on-surface-variant text-semantic-on-surface-variant md:h-[30rem] lg:h-[40rem]"
 >
 	<span class="py-2 text-xs tracking-[.4rem] text-semantic-on-background">recent posts</span>
+	<span class="pb-2 text-xs text-semantic-on-background/70">本水最新的6篇博客文章</span>
 	<div class="w-12/12 carousel" style="scrollbar-width: none;">
 		{
 			posts.map(

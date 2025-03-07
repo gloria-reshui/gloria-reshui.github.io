@@ -19,9 +19,8 @@ const headshotPath = await easyConfig.headshotPath;
 	<div class="flex flex-col items-center justify-start sm:w-full sm:pt-8 md:w-8/12">
 		<h1 class="text-4xl font-bold text-semantic-primary mb-8">Welcome to My Space</h1>
 		<p class="text-sm text-semantic-on-surface-variant mb-8">推荐使用电脑访问 / Recommended to view on desktop</p>
-		<Carousel />
 		<div
-			class="mt-4 mb-8 flex w-full rounded-xl border-4 border-semantic-on-surface-variant p-4 sm:flex-col sm:items-center sm:justify-center md:h-[35%] md:flex-row lg:h-[25%]"
+			class="mb-8 flex w-full rounded-xl border-4 border-semantic-on-surface-variant p-4 sm:flex-col sm:items-center sm:justify-center md:h-[35%] md:flex-row lg:h-[25%]"
 		>
 			<div class="sm:min-h-2/6 sm:max-h-3/6 flex rounded-xl sm:w-7/12 md:h-full md:w-2/12">
 				<img src={headshotPath} alt={easyConfig.headshotAlt} class="w-full rounded-xl object-cover" />
@@ -29,6 +28,7 @@ const headshotPath = await easyConfig.headshotPath;
 			<div class="mx-auto flex flex-col justify-between sm:w-full sm:items-center sm:pt-3 md:h-full md:w-9/12 md:pl-8">
 				<div class="flex h-full flex-col sm:items-center">
 					<p class="text-xl font-bold text-semantic-on-surface-variant">{`作为人类的说明 About Reshui`}</p>
+					<p class="text-xs text-semantic-on-surface-variant/80 pt-1">Base in Shanghai & Chengdu; Bachelor of Applied Mathematics, Central South University</p>
 					<p class="line-clamp-3 whitespace-pre-line pt-3 sm:line-clamp-6 sm:w-11/12 sm:text-center sm:text-sm">
 						{easyConfig.aboutMe}
 					</p>
@@ -45,6 +45,8 @@ const headshotPath = await easyConfig.headshotPath;
 				</div>
 			</div>
 		</div>
+		<Carousel />
+		
 	</div>
 
 		<div class="mt-8 w-full md:w-8/12">

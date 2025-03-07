@@ -20,10 +20,10 @@ export const projects: Project[] = [
 
     {
         title:'yuejingyueli_Application',
-        description:'一款基于月经周期展开的月历设计',
+        description:'一款基于月经周期展开的月历设计移动小组件',
         techStack:['girl', 'health'],
-        progress: 20,
-        detailUrl: 'https://separated-mall-901.notion.site/182184f627a980d49086e98152af3537?pvs=74'
+        progress: 30,
+        detailUrl: 'https://github.com/gloria-reshui/YUEJING'
     },
     
     {
@@ -65,6 +65,14 @@ export const projects: Project[] = [
         techStack:['data visualization','letters for yourself'],
         progress: 50,
         detailUrl:'https://separated-mall-901.notion.site/Lovely-Journal-for-yourself-1aa184f627a980688154d6bdaf4dadc0?pvs=4'
+    },
+
+    {
+        title: '数字游民社区风险档案库',
+        description: '本知识库由热水创建的游民安全小酒馆创建，旨在为数字游民社区提供信息参考，记录在各社区中存在不当行为的个人信息，帮助社区成员避免潜在风险和负面经历',
+        techStack: ['community', 'girl'],
+        progress: 100,
+        detailUrl: 'https://larkcommunity.feishu.cn/wiki/space/7478967762845433875?ccm_open_type=lark_wiki_spaceLink&open_tab_from=wiki_home'
     }
 
     // 在这里添加更多项目

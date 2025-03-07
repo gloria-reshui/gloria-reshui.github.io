@@ -112,6 +112,9 @@ import PaymentWidget from '@components/navbar/PaymentWidget.astro';
 				<li class="mx-6 flex flex-col">
 					<HeaderLink class="link-header" href="/blog">Blog</HeaderLink>
 				</li>
+				<li class="mx-6 flex flex-col">
+					<HeaderLink class="link-header" href="/projects">Projects</HeaderLink>
+				</li>
 			</ul>
 			<div id="nav-arrow-wrapper" role="button" tabindex="0" class="mobile-navbar-icon">
 				<div id="navbar-fun-line"></div>
@@ -303,6 +306,8 @@ import PaymentWidget from '@components/navbar/PaymentWidget.astro';
 			color: theme(colors.semantic.on-background/.75);
 			transition: color 300ms;
 			font-size: 4vb;
+			position: relative;
+			z-index: 1000;
 		}
 		:is(.mobile-navbar-icon:focus-within, .mobile-navbar-icon:active) #nav-arrow,
 		:is(.mobile-navbar-icon:focus-within, .mobile-navbar-icon:active) :global(#social-icon),
