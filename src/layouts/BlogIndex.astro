@@ -22,7 +22,7 @@ posts.forEach(post => {
 	if (!postsByYear[year]) postsByYear[year] = [];
 	postsByYear[year].push(post);
 });
-const years = Object.keys(postsByYear).sort((a, b) => b - a);
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 const heroImage = posts.length > 0 ? posts[0].props.data.heroImage : undefined;
 const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 ---
