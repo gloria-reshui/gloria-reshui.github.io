@@ -37,7 +37,11 @@ const BILIBILI_USERNAME = '399826816';
 // About me config
 const HEADSHOT_PATH = '/imgs/headshot.jpg';
 const HEADSHOT_ALT = 'photo';
-const ABOUT_ME = 'An independent philosopher or somebody who don\'t like shit. Sometimes I make tools for girls to have fun.無駄に生きることを誇りに思っている';
+const ABOUT_ME = `从腾讯跑路后全职搞艺体的内向女人，长途游泳er、成人女游泳教练（双证）、死亡冥想带想、绘本作者
+
+An independent philosopher or somebody who don't like shit. Sometimes I make tools for girls to have fun.
+
+無駄に生きることを誇りに思っている。`;
 
 // Site assets
 const DEFAULT_SOCIAL_IMAGE_PATH = '/imgs/default-social.png';

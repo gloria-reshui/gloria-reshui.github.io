@@ -71,52 +71,14 @@ import PaymentWidget from '@components/navbar/PaymentWidget.astro';
 	<ul class="grid h-full w-full grid-cols-3 grid-rows-1 items-stretch justify-items-stretch py-1">
 		<li class="mobile-navbar-icon col-start-1 col-end-2 flex flex-col items-center justify-center">
 			<SocialLinks />
+			<span class="text-xs mt-1">home</span>
 		</li>
 		<li class="mobile-navbar-icon col-start-2 col-end-3 flex flex-col items-center justify-center">
 			<ShareIcon mode="mobile" />
+			<span class="text-xs mt-1">blog</span>
 		</li>
 		<li id="nav-content-list" class="dropdown z-[999] col-start-3 col-end-4 flex h-full w-full items-center justify-center">
-			<ul tabindex="0" id="nav-content-mobile" class="dropdown-content z-[999]">
-				{
-					easyConfig.easyAbcEnabled && (
-						<li class="mx-2  h-max w-max">
-							<ul class="mb-4 grid h-max w-max grid-rows-3 gap-4 text-left">
-								<li>
-									<HeaderLink class="text-sub" href="/easy/theme">
-										{' '}
-										ColorFun{' '}
-									</HeaderLink>
-								</li>
-								<li>
-									<HeaderLink class="text-sub" href="/easy">
-										{' '}
-										Readme{' '}
-									</HeaderLink>
-								</li>
-								<li>
-									<HeaderLink class="text-sub" href="/easy/blog">
-										{' '}
-										EasyABC Blog{' '}
-									</HeaderLink>
-								</li>
-							</ul>
-							<HeaderLink class="link-header" href="/easy">
-								EasyABC
-							</HeaderLink>
-						</li>
-					)
-				}
-				<li class="">
-					<HeaderLink class="link-header" href="/">About</HeaderLink>
-				</li>
-				<li class="mx-6 flex flex-col">
-					<HeaderLink class="link-header" href="/blog">Blog</HeaderLink>
-				</li>
-				<li class="mx-6 flex flex-col">
-					<HeaderLink class="link-header" href="/projects">Projects</HeaderLink>
-				</li>
-			</ul>
-			<div id="nav-arrow-wrapper" role="button" tabindex="0" class="mobile-navbar-icon">
+			<div id="nav-arrow-wrapper" role="button" tabindex="0" class="mobile-navbar-icon flex flex-col items-center">
 				<div id="navbar-fun-line"></div>
 				<Icon
 					id="nav-arrow"
@@ -124,6 +86,7 @@ import PaymentWidget from '@components/navbar/PaymentWidget.astro';
 					class="navbar-fun-line rotate-180"
 					name="material-symbols:keyboard-double-arrow-left-rounded"
 				/>
+				<span class="text-xs mt-1">projects</span>
 			</div>
 		</li>
 	</ul>

@@ -6,11 +6,10 @@ import { projects } from '@utils/projectsConfig';
 
 <BaseLayout
     pageTitle="Projects"
-    pageDescription="给你看看我在瞎闹什么"
+    pageDescription=""
 >
     <div class="flex flex-col items-center justify-start w-full">
         <div class="w-full sm:w-11/12 md:w-10/12 lg:w-8/12 mx-auto">
-            <h1 class="text-3xl font-bold text-semantic-on-surface mb-8">Projects in my hand</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {projects.map(project => (
                     <ProjectCard {...project} />
@@ -19,9 +18,3 @@ import { projects } from '@utils/projectsConfig';
         </div>
     </div>
 </BaseLayout>
-
-<style>
-    [data-icon]:hover {
-        color: theme(colors.semantic.secondary);
-    }
-</style>

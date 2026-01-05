@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { customGetCollection } from '@utils/customGetCollection';
+import FormattedDate from '@components/FormattedDate.astro';
 
 const blogCollection = await customGetCollection('blog', 'blog');
 let posts = blogCollection.sort((a, b) => {
@@ -15,114 +16,42 @@ posts = posts.slice(0, 6);
 ---
 
 <div
-	class="flex w-full flex-col items-center rounded-xl border-4 border-semantic-on-surface-variant text-semantic-on-surface-variant md:h-[30rem] lg:h-[40rem]"
+	class="flex w-full flex-col items-center rounded-xl border-4 border-semantic-on-surface-variant text-semantic-on-surface-variant"
 >
-	<span class="py-2 text-xs tracking-[.4rem] text-semantic-on-background">recent posts</span>
+	<div class="flex w-full items-center justify-center gap-4 pt-2">
+		<span class="text-xs tracking-[.4rem] text-semantic-on-background">recent posts</span>
+		<a href="/blog" class="rounded-full bg-semantic-surface-variant/80 px-3 py-1 text-xs text-semantic-on-surface-variant transition-all hover:bg-semantic-surface-variant hover:text-semantic-on-surface-variant/90">Read More</a>
+	</div>
 	<span class="pb-2 text-xs text-semantic-on-background/70">本水最新的6篇博客文章</span>
-	<div class="w-12/12 carousel" style="scrollbar-width: none;">
-		{
-			posts.map(
-				(post, i) =>
+	<div class="w-full p-4">
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+			{
+				posts.map((post) => (
 					post.props.data.heroImage && (
-						<>
-							<div id={`item_${i}`} class="carousel-background-gradient carousel-item relative w-full">
-								<div class="z-[-1] flex h-full w-full overflow-hidden">
+						<div class="flex flex-col rounded-lg overflow-hidden border border-semantic-on-surface-variant/20 hover:shadow-md transition-shadow">
+							<a href={post.params.htmlSlug} class="group">
+								<div class="relative aspect-video overflow-hidden">
 									<Image
-										class="h-full w-full object-cover opacity-100 blur-2xl brightness-[125%] saturate-[55%] dark:brightness-100 dark:invert dark:saturate-50"
+										class="w-full h-full object-cover transition-transform group-hover:scale-105"
 										src={post.props.data.heroImage}
 										alt={post.props.data.heroAlt || ''}
 									/>
 								</div>
-								<div class="absolute left-0 h-full w-full py-6 sm:px-10 md:px-20">
-									<a
-										class="z-[3] flex h-full items-center justify-center text-left font-bold text-semantic-on-background hover:underline "
-										href={`${post.params.htmlSlug}`}
-									>
-										<span class="rounded-xl bg-semantic-surface-variant/50 sm:z-[-1] sm:line-clamp-6 sm:px-2 sm:text-[1.7rem] sm:underline md:z-[3] md:line-clamp-4 md:px-8 md:text-[3.3rem] lg:line-clamp-4 lg:text-[4.4rem]">
-											{post.props.data.title}
-										</span>
-									</a>
+								<div class="p-3">
+									<h3 class="text-base font-semibold line-clamp-2 group-hover:text-semantic-primary">
+										{post.props.data.title}
+									</h3>
+									<div class="text-xs text-semantic-on-background/60 mt-2">
+										<FormattedDate
+											date={post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)}
+										/>
+									</div>
 								</div>
-								<div class="absolute left-1 right-1 top-1/2 -translate-y-1/2 transform justify-between sm:hidden md:flex">
-									{i !== 0 ? (
-										<a
-											href={`#item_${i - 1}`}
-											class="btn btn-circle bg-semantic-background/20 hover:bg-semantic-on-background/30"
-										>
-											❮
-										</a>
-									) : (
-										<a
-											href={`#item_${posts.length - 1}`}
-											class="btn btn-circle bg-semantic-background/20 hover:bg-semantic-on-background/30"
-										>
-											❮
-										</a>
-									)}
-									{i !== posts.length - 1 ? (
-										<a
-											href={`#item_${i + 1}`}
-											class="btn btn-circle bg-semantic-background/20 hover:bg-semantic-on-background/30"
-										>
-											❯
-										</a>
-									) : (
-										<a href={`#item_0`} class="btn btn-circle bg-semantic-background/20 hover:bg-semantic-on-background/30">
-											❯
-										</a>
-									)}
-								</div>
-								<div class="absolute left-1 right-1 top-1/2 flex -translate-y-1/2 transform justify-between md:hidden">
-									<a class="btn btn-circle">❮</a>
-									<a class="btn btn-circle">❯</a>
-								</div>
-							</div>
-						</>
+							</a>
+						</div>
 					)
-			)
-		}
-	</div>
-	<div class="flex w-full justify-center gap-2 py-1 sm:hidden">
-		{
-			posts.map(
-				(post, i) =>
-					post.props.data.heroImage && (
-						<a href={`#item_${i}`} class="btn btn-sm hover:bg-semantic-on-background/20">
-							{i + 1}
-						</a>
-					)
-			)
-		}
+				))
+			}
+		</div>
 	</div>
 </div>
-<style>
-	.carousel-background-gradient {
-		position: relative;
-	}
-	.carousel-background-gradient:before {
-		content: '';
-		z-index: -9;
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background: var(--linear-gradient-y);
-		filter: blur(1px);
-		opacity: 0.25;
-		transition: opacity 0.3s;
-		border-radius: inherit;
-	}
-	.carousel-background-gradient::after {
-		content: '';
-		z-index: -9;
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		opacity: inherit;
-		background: inherit;
-		border-radius: inherit;
-	}
-</style>

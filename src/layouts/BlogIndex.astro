@@ -14,6 +14,15 @@ let posts = blogCollection.sort((a, b) => {
 	// Sort in descending order (newest first)
 	return dateB.valueOf() - dateA.valueOf();
 });
+// 按年份分组
+let postsByYear = {};
+posts.forEach(post => {
+	const date = post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate);
+	const year = date.getFullYear();
+	if (!postsByYear[year]) postsByYear[year] = [];
+	postsByYear[year].push(post);
+});
+const years = Object.keys(postsByYear).sort((a, b) => b - a);
 const heroImage = posts.length > 0 ? posts[0].props.data.heroImage : undefined;
 const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 ---
@@ -24,10 +33,11 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 	heroImage={heroImage}
 	heroAlt={heroAlt}
 >
-	<ul class="flex w-[70svw] list-none flex-col items-start py-4 pl-[7svw] pr-[7svw] sm:hidden">
-		{
-			posts.map((post, i) => {
-				return (
+	{years.map(year => (
+		<div>
+			<h2 class="mt-8 mb-2 text-xl font-bold text-semantic-primary">{year}</h2>
+			<ul class="flex w-[70svw] list-none flex-col items-start py-4 pl-[7svw] pr-[7svw] sm:hidden">
+				{postsByYear[year].map((post, i) => (
 					<>
 						<li class="flex h-[12.5rem] w-full flex-col">
 							<a
@@ -37,9 +47,7 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 								<div class="flex h-full w-full flex-col justify-start ">
 									<div class="text-xs font-medium text-semantic-on-background/60 ">
 										<FormattedDate
-											date={
-												post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)
-											}
+											date={post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)}
 										/>
 									</div>
 									<div class="flex h-[6rem] w-full justify-between">
@@ -57,7 +65,6 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 												</p>
 											)}
 										</div>
-
 										<div class="group-hover:shadow-gradient m-1 ml-12 aspect-square h-[140%] flex-shrink-0 rounded-xl   ">
 											{post.props.data.heroImage ? (
 												<Image
@@ -73,28 +80,22 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 									<div class="mb-auto mt-6 text-xs font-normal italic text-semantic-on-background/60 ">
 										{[post.props.data.readingTime]}
 									</div>
-									{posts.length != i + 1 && <hr class="mb-3 mt-auto w-full  border-semantic-on-surface-variant/10 " />}
+									{postsByYear[year].length != i + 1 && <hr class="mb-3 mt-auto w-full  border-semantic-on-surface-variant/10 " />}
 								</div>
 							</a>
 						</li>
 					</>
-				);
-			})
-		}
-	</ul>
-	<ul class="flex w-full list-none flex-col items-start py-4 md:hidden">
-		{
-			posts.map((post, i) => {
-				return (
+				))}
+			</ul>
+			<ul class="flex w-full list-none flex-col items-start py-4 md:hidden">
+				{postsByYear[year].map((post, i) => (
 					<>
 						<li class="flex h-[11rem] w-full flex-col ">
 							<a class="group flex h-full items-center justify-between hover:no-underline" href={`${post.params.htmlSlug}`}>
 								<div class="flex h-full w-full flex-col justify-start ">
 									<div class="text-xs font-medium text-semantic-on-background/60">
 										<FormattedDate
-											date={
-												post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)
-											}
+											date={post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)}
 										/>
 									</div>
 									<div class="flex h-[6.25rem] w-full justify-between ">
@@ -108,7 +109,6 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 												<p class="line-clamp-3 text-xs ">{formatDescription(post.props.data.description, post.props.body)}</p>
 											)}
 										</div>
-
 										<div class="ml-6 aspect-square h-full flex-shrink-0 p-1">
 											{post.props.data.heroImage ? (
 												<Image
@@ -121,18 +121,18 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 											)}
 										</div>
 									</div>
-									<div class="mb-auto mt-3 text-xs font-normal italic  text-semantic-on-background/70 ">
+									<div class="mb-auto mt-6 text-xs font-normal italic text-semantic-on-background/60 ">
 										{[post.props.data.readingTime]}
 									</div>
+									{postsByYear[year].length != i + 1 && <hr class="mb-3 mt-auto w-full  border-semantic-on-surface-variant/10 " />}
 								</div>
 							</a>
-							{posts.length != i + 1 && <hr class="mb-1.5 mt-auto w-full  border-semantic-on-surface-variant/10 " />}
 						</li>
 					</>
-				);
-			})
-		}
-	</ul>
+				))}
+			</ul>
+		</div>
+	))}
 </BaseLayout>
 <style>
 	a {
