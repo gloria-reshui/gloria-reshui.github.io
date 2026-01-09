@@ -36,10 +36,10 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 	{years.map(year => (
 		<div>
 			<h2 class="mt-8 mb-2 text-xl font-bold text-semantic-primary">{year}</h2>
-			<ul class="flex w-[70svw] list-none flex-col items-start py-4 pl-[7svw] pr-[7svw] sm:hidden">
+			<ul class="flex w-full max-w-[92svw] mx-auto list-none flex-col items-start px-4 py-3 sm:hidden">
 				{postsByYear[year].map((post, i) => (
 					<>
-						<li class="flex h-[12.5rem] w-full flex-col">
+						<li class="flex w-full flex-col py-3">
 							<a
 								class="group flex h-full min-w-full items-center justify-between hover:no-underline"
 								href={`${post.params.htmlSlug}`}
@@ -50,25 +50,25 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 											date={post.props.data.update ? new Date(post.props.data.update) : new Date(post.props.data.pubDate)}
 										/>
 									</div>
-									<div class="flex h-[6rem] w-full justify-between">
+									<div class="flex w-full justify-between gap-3">
 										<div class="flex w-max flex-col">
-											<h1 class="line-clamp-2 hyphens-auto break-words text-lg font-bold  group-hover:text-semantic-primary ">
+											<h1 class="line-clamp-2 hyphens-auto break-words text-base font-semibold leading-5 group-hover:text-semantic-primary ">
 												{post.props.data.title}
 											</h1>
 											{titleLineCountIsOne(post.props.data.title) ? (
-												<p class="line-clamp-3 text-sm ">
+												<p class="line-clamp-3 text-xs ">
 													{formatDescription(post.props.data.description, post.props.body, 3, 100)}
 												</p>
 											) : (
-												<p class="line-clamp-2 text-sm ">
+												<p class="line-clamp-2 text-xs ">
 													{formatDescription(post.props.data.description, post.props.body, 2, 100)}
 												</p>
 											)}
 										</div>
-										<div class="group-hover:shadow-gradient m-1 ml-12 aspect-square h-[140%] flex-shrink-0 rounded-xl   ">
+										<div class="m-1 ml-3 aspect-square h-24 max-h-28 flex-shrink-0 rounded-lg overflow-hidden">
 											{post.props.data.heroImage ? (
 												<Image
-													class="  h-full rounded-xl object-cover  "
+													class="h-full w-full rounded-lg object-cover"
 													src={post.props.data.heroImage}
 													alt={post.props.data.heroAlt || ''}
 												/>
@@ -77,17 +77,17 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 											)}
 										</div>
 									</div>
-									<div class="mb-auto mt-6 text-xs font-normal italic text-semantic-on-background/60 ">
+									<div class="mb-auto mt-3 text-xs font-normal italic text-semantic-on-background/60 ">
 										{[post.props.data.readingTime]}
 									</div>
-									{postsByYear[year].length != i + 1 && <hr class="mb-3 mt-auto w-full  border-semantic-on-surface-variant/10 " />}
+									{postsByYear[year].length != i + 1 && <hr class="my-2 mt-auto w-full border-semantic-on-surface-variant/10" />}
 								</div>
 							</a>
 						</li>
 					</>
 				))}
 			</ul>
-			<ul class="flex w-full list-none flex-col items-start py-4 md:hidden">
+			<ul class="hidden sm:flex w-full list-none flex-col items-start py-4 md:hidden">
 				{postsByYear[year].map((post, i) => (
 					<>
 						<li class="flex h-[11rem] w-full flex-col ">
@@ -121,10 +121,10 @@ const heroAlt = posts.length > 0 ? posts[0].props.data.heroAlt : undefined;
 											)}
 										</div>
 									</div>
-									<div class="mb-auto mt-6 text-xs font-normal italic text-semantic-on-background/60 ">
+									<div class="mb-auto mt-3 text-xs font-normal italic text-semantic-on-background/60 ">
 										{[post.props.data.readingTime]}
 									</div>
-									{postsByYear[year].length != i + 1 && <hr class="mb-3 mt-auto w-full  border-semantic-on-surface-variant/10 " />}
+									{postsByYear[year].length != i + 1 && <hr class="my-2 mt-auto w-full border-semantic-on-surface-variant/10" />}
 								</div>
 							</a>
 						</li>

@@ -70,24 +70,14 @@ import PaymentWidget from '@components/navbar/PaymentWidget.astro';
 >
 	<ul class="grid h-full w-full grid-cols-3 grid-rows-1 items-stretch justify-items-stretch py-1">
 		<li class="mobile-navbar-icon col-start-1 col-end-2 flex flex-col items-center justify-center">
-			<SocialLinks />
-			<span class="text-xs mt-1">home</span>
+			<HeaderLink class="link-header" href="/">home</HeaderLink>
 		</li>
 		<li class="mobile-navbar-icon col-start-2 col-end-3 flex flex-col items-center justify-center">
 			<ShareIcon mode="mobile" />
-			<span class="text-xs mt-1">blog</span>
+			<span class="text-xs mt-1">share</span>
 		</li>
-		<li id="nav-content-list" class="dropdown z-[999] col-start-3 col-end-4 flex h-full w-full items-center justify-center">
-			<div id="nav-arrow-wrapper" role="button" tabindex="0" class="mobile-navbar-icon flex flex-col items-center">
-				<div id="navbar-fun-line"></div>
-				<Icon
-					id="nav-arrow"
-					viewBox="0 0 24 24"
-					class="navbar-fun-line rotate-180"
-					name="material-symbols:keyboard-double-arrow-left-rounded"
-				/>
-				<span class="text-xs mt-1">projects</span>
-			</div>
+		<li class="mobile-navbar-icon col-start-3 col-end-4 flex flex-col items-center justify-center">
+			<HeaderLink class="link-header" href="/blog">blog</HeaderLink>
 		</li>
 	</ul>
 </nav>
