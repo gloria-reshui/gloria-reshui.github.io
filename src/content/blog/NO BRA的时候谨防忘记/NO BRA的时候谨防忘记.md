@@ -1,5 +1,5 @@
 ---
-title: NO BRA的时候谨防忘记这么干的真理
+title: NO BRA的时候谨防忘记这么干
 description: “信念”有点难被理解，就说“真理”二字好了
 pubDate: 2026-06-07
 modifiedDate: 2026-06-07
